@@ -444,7 +444,7 @@
   align-items: flex-start;
   justify-content: space-between;
   gap: 12px;
-  margin-bottom: 14px;
+  margin-top: 14px;
 }
 
 .gallery-project-titles { flex: 1; min-width: 0; }
@@ -464,9 +464,13 @@
 }
 
 /* ---------- Grid style ---------- */
-.image-grid {
-  display: grid;
-  gap: 6px;
+css.image-grid img {
+  width: 100%;
+  aspect-ratio: 7 / 5;   /* was 1 / 1 */
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid var(--border-default);
+  display: block;
 }
 
 .image-grid img {
@@ -606,6 +610,16 @@
         <!-- EDIT: your links row. Add or remove <a> tags as needed.
              Each icon is just plain text/emoji here to keep this dependency-free —
              swap in an SVG or icon font later if you want. -->
+
+        <p>
+        Resume:
+        </p>
+        <div class="link-row">
+        <a href="https://drive.google.com/file/d/1-cNJe3tHiEPKuCPQ067F_ZIm8aZ30_No/view?usp=sharing"> Jesse_Kim_Resume</a> 
+        </div>
+
+        <p></p>
+
         <p>
           Contact Info:
         </p>
@@ -615,13 +629,6 @@
           Linkedin: <a href="linkedin.com/in/jesse-kim-b51633308" target="_blank" rel="noopener"> linkedin.com/in/jesse-kim-b51633308</a>
         </div>
 
-        <p>
-        
-        Resume:
-        </p>
-        <div class="link-row">
-        <a href="https://drive.google.com/file/d/1-cNJe3tHiEPKuCPQ067F_ZIm8aZ30_No/view?usp=sharing"> Jesse_Kim_Resume</a> 
-        </div>
       </div>
       <img class="about-photo" src="assets/other/profile_photo.jpg" alt="Photo of Jesse Kim">
     </div>
@@ -635,45 +642,22 @@
   <section id="projects" class="page-section">
     <h2 class="section-title">Projects</h2>
 
-    <!-- PROJECT WITH GALLERY 1 -->
     <div class="gallery-project" data-gallery-id="riscv">
+      <div class="gallery-body" data-gallery-body="riscv"></div>
+
       <div class="gallery-project-header">
         <div class="gallery-project-titles">
-          <!-- EDIT: project title -->
           <p class="gallery-project-title">Pipelined RISC-V CPU</p>
-          <!-- EDIT: short description -->
           <p class="gallery-project-desc">
             A 5-stage pipelined RISC-V CPU implemented in Verilog, with hazard
             detection, forwarding, and branch resolution.
           </p>
         </div>
-        <!-- EDIT: "selected" on grid or carousel sets the default view -->
         <select class="gallery-style-select" data-gallery-select="riscv">
           <option value="grid" selected>Grid</option>
           <option value="carousel">Carousel</option>
         </select>
       </div>
-
-      <div class="gallery-body" data-gallery-body="riscv"></div>
-    </div>
-
-    <!-- PROJECT WITH GALLERY 2 — copy this whole block for more projects -->
-    <div class="gallery-project" data-gallery-id="second">
-      <div class="gallery-project-header">
-        <div class="gallery-project-titles">
-          <p class="gallery-project-title">Second Project</p>
-          <p class="gallery-project-desc">
-            Swap in your own title, description, and image list — just copy
-            this whole block for each new project.
-          </p>
-        </div>
-        <select class="gallery-style-select" data-gallery-select="second">
-          <option value="grid" selected>Grid</option>
-          <option value="carousel">Carousel</option>
-        </select>
-      </div>
-
-      <div class="gallery-body" data-gallery-body="second"></div>
     </div>
 
     </div>
@@ -915,22 +899,28 @@
     }
   };
 
-  function computeGridSize(n) {
-    if (n <= 0) return 0;
-    return Math.floor(Math.sqrt(n));
+  // fixed grid shape: always 3 columns, capped at 2 rows (max 6 images shown)
+  const GRID_COLS = 3;
+  const GRID_MAX_ROWS = 2;
+
+  function computeGridLayout(n) {
+    if (n <= 0) return { cols: 0, rows: 0, used: 0 };
+    const rows = Math.min(GRID_MAX_ROWS, Math.ceil(n / GRID_COLS));
+    const used = Math.min(n, GRID_COLS * rows);
+    return { cols: GRID_COLS, rows, used };
   }
 
   function renderGrid(container, data) {
-    const gridSize = computeGridSize(data.images.length);
-    if (gridSize === 0) {
+    const layout = computeGridLayout(data.images.length);
+    if (layout.used === 0) {
       container.innerHTML = '<p style="color:var(--text-secondary);font-size:13px;">No images to display.</p>';
       return;
     }
-    const used = data.images.slice(0, gridSize * gridSize);
+    const used = data.images.slice(0, layout.used);
 
     const grid = document.createElement('div');
     grid.className = 'image-grid';
-    grid.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
+    grid.style.gridTemplateColumns = `repeat(${layout.cols}, 1fr)`;
 
     used.forEach((filename, i) => {
       const img = document.createElement('img');
@@ -943,6 +933,8 @@
     container.innerHTML = '';
     container.appendChild(grid);
   }
+
+  
 
   function renderCarousel(container, data) {
     if (data.images.length === 0) {
