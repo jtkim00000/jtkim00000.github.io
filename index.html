@@ -345,6 +345,53 @@
     .card-thumb { width: 100%; height: 160px; }
     .card-with-year { flex-direction: column; gap: 4px; }
   }
+  /* ---------- Course list (Unofficial Transcript) ---------- */
+.course-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.course-item {
+  border: 1px solid var(--border-default);
+  background: var(--bg-inset);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+}
+
+.course-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.course-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.course-grade {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  flex-shrink: 0;
+}
+
+.course-desc {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin: 6px 0 0;
+}
+
+@media (max-width: 640px) {
+  .course-header {
+    flex-direction: column;
+    gap: 2px;
+  }
+}
 </style>
 </head>
 <body>
@@ -519,6 +566,49 @@
       <p class="edu-degree">High School Diploma</p>
       <p class="edu-meta">Graduated May 2025</p>
       <p class="edu-details">Cupertino, CA</p>
+    </div>
+
+    <h2 class="section-title">Unofficial Transcript</h2>
+
+<div class="course-list">
+
+  <!-- COURSE ITEM 1 -->
+  <div class="course-item">
+    <div class="course-header">
+      <!-- EDIT: class name -->
+      <p class="course-name">Digital Logic Design</p>
+      <!-- EDIT: grade -->
+      <span class="course-grade">A</span>
+    </div>
+    <!-- EDIT: short description -->
+    <p class="course-desc">
+      Combinational and sequential circuit design, FSMs, and intro to HDL.
+    </p>
+  </div>
+
+  <!-- COURSE ITEM 2 — copy this block for each additional class -->
+  <div class="course-item">
+    <div class="course-header">
+      <p class="course-name">Computer Architecture</p>
+      <span class="course-grade">A</span>
+    </div>
+    <p class="course-desc">
+      CPU design, pipelining, memory hierarchy, and instruction set architecture.
+    </p>
+  </div>
+
+  <div class="course-item">
+    <div class="course-header">
+      <p class="course-name">Signals &amp; Systems</p>
+      <span class="course-grade">A-</span>
+    </div>
+    <p class="course-desc">
+      Continuous and discrete-time signal analysis, Fourier and Laplace transforms.
+    </p>
+  </div>
+
+  </div>
+      </p>
     </div>
 
   </section>
