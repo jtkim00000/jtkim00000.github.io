@@ -545,11 +545,8 @@
           </div>
 
           <p class="card-desc">
-            · Built a Pipelined RISC-V CPU in Verilog RTL from scratch, implementing 37-instruction subset of RV32I ISA
-            · Designed custom CPU datapath, first implementing single-cycle CPU, then extending into a 5-stage pipelined
-            CPU (IF/ID/EX/MEM/WB) with forwarding, pipeline stalling, and write-through for full hazard resolution
-            · Verified CPU functionality across all instruction types, hazard scenarios, and components using hand-assembled
-            RV32I test programs, GTKWave waveform analysis, and isolated module-level testbenches
+            Designed a custom 5-stage Pipelined RV32I CPU in Verilog. 
+            The CPU is capable of forwarding, pipeline stalling, a register write-through for full hazard resolution. Hardwired Control Unit, Harvard Architecture.
           </p>
 
           <div class="card-tags">
@@ -559,16 +556,19 @@
           </div>
 
           <div class="card-links">
-            <a href="https://github.com/jtkim00000/riscv-cpu" target="_blank" rel="noopener">Github Repo →</a>
+            <a href="https://github.com/jtkim00000/riscv-cpu" target="_blank" rel="noopener">Github →</a>
           </div>
         </div>
       </div>
 
+
+
+
       <div class="card">
         <div class="card-images">
-          <img src="assets/riscv-cpu-images/RISCV_CPU_Datapath_Final.png" alt="Pipelined Datapath">
-          <img src="assets/riscv-cpu-images/riscv-hazard-verification.png" alt="Verification Image">
-          <img src="assets/riscv-cpu-images/custom-riscv-single-cycle-datapath.png" alt="Single-Cycle Datapath">
+          <img src="assets/noise-detector-images/noise-detector-circuit.png" alt="Circuit Diagram">
+          <img src="assets/noise-detector-images/noise_detector.png" alt="PCB Image">
+          <img src="assets/noise-detector-images/3-stage-comparator.png" alt="3-stage Comparator">
         </div>
 
         <div class="card-body">
@@ -578,11 +578,39 @@
           </div>
 
           <p class="card-desc">
-            · Built a Pipelined RISC-V CPU in Verilog RTL from scratch, implementing 37-instruction subset of RV32I ISA
-            · Designed custom CPU datapath, first implementing single-cycle CPU, then extending into a 5-stage pipelined
-            CPU (IF/ID/EX/MEM/WB) with forwarding, pipeline stalling, and write-through for full hazard resolution
-            · Verified CPU functionality across all instruction types, hazard scenarios, and components using hand-assembled
-            RV32I test programs, GTKWave waveform analysis, and isolated module-level testbenches
+            Designed custom PCB noise detector with  analog signal chain (amplification → peak detection → timed delay → threshold comparison) using 
+            LM358 op-amps, LM311 comparator, and Schmitt Trigger Inverter
+          </p>
+
+          <div class="card-tags">
+            <span class="tag">PCB Design</span>
+            <span class="tag">Analog Circuits</span>
+            <span class="tag">Oscilloscope</span>
+          </div>
+
+          <div class="card-links">
+            <a href="https://github.com/jtkim00000/noise-detector-pcb" target="_blank" rel="noopener">Github →</a>
+          </div>
+        </div>
+
+
+
+
+        <div class="card">
+        <div class="card-images">
+          <img src="assets/lc3-cpu-images/lc3-datapath.png" alt="CPU Datapath">
+          <img src="assets/lc3-cpu-images/lc3-fsm.png" alt="Control Unit FSM">
+          <img src="assets/lc3-cpu-images/lc3-microsequencer.png" alt="Microsequencer for Control Unit">
+        </div>
+
+        <div class="card-body">
+          <div class="card-with-year">
+            <p class="card-title">LC-3 CPU</p>
+            <span class="card-year">*images are from the Appendicies of Patt and Patel*</span>
+          </div>
+
+          <p class="card-desc">
+            Built a Verilog RTL implementation of the CPU from Little Computer 3, implementing 17-instruction subset. Multi-cycle CPU, Microprogrammed Control Unit, Von Neumann Architecture.
           </p>
 
           <div class="card-tags">
@@ -592,9 +620,93 @@
           </div>
 
           <div class="card-links">
-            <a href="https://github.com/jtkim00000/riscv-cpu" target="_blank" rel="noopener">Github Repo →</a>
+            <a href="https://github.com/jtkim00000/lc3-cpu" target="_blank" rel="noopener">Github →</a>
           </div>
         </div>
+
+
+
+
+
+
+
+        <div class="card">
+        <div class="card-images">
+          <img src="assets/paticle-behavior-images/image.png" alt="Algorithm Comparison">
+          <img src="assets/paticle-behavior-images/(Helix + ExB Drift).png" alt="ExB Drift">
+          <img src="assets/paticle-behavior-images/v_x distribution.png" alt="Relaxation to Maxwellian VD">
+        </div>
+
+        <div class="card-body">
+          <div class="card-with-year">
+            <p class="card-title">3D Single Particle Trajectory Simulation and Monte Carlo Collision Simulation</p>
+            <span class="card-year"></span>
+          </div>
+
+          <p class="card-desc">
+            Designed particle tracking algorithms to compare Forward Euler, Runge-Kutta, and Boris algorithm methods of Particle tracking. 
+            Used Boris algorithm to build 3D single particle simulation to study ExB single particle motions. 
+            Developed AR sampling algorithm and particle collision simulation to study the relaxation to Maxwellian Velocity distributions under high particle collision frequency.
+          </p>
+
+          <div class="card-tags">
+            <span class="tag">Python</span>
+            <span class="tag">Numpy</span>
+            <span class="tag">Matplotlib</span>
+          </div>
+
+          <div class="card-links">
+            Github (Coming Soon) <a href="" target="_blank" rel="noopener"></a>
+          </div>
+        </div>
+
+
+
+
+
+
+        <div class="card">
+        <div class="card-images">
+          <img src="assets/poisson-images/Screenshot 2026-07-02 051334.png" alt="Electric Potential">
+          <img src="assets/poisson-images/Screenshot 2026-07-02 051534.png" alt="Thomas Algorithm">
+          <img src="assets/poisson-images/Screenshot 2026-07-02 051416.png" alt="SSOR Analysis">
+        </div>
+
+        <div class="card-body">
+          <div class="card-with-year">
+            <p class="card-title">1D Poisson Solvers for Particle-In-Cell Simulation</p>
+            <span class="card-year"></span>
+          </div>
+
+          <p class="card-desc">
+            Designed various 1D Poisson Solvers to accelerate a Particle-In-Cell Simulation.
+             Implemented 1 direct solver, the Thomas Algorithm, and 4 Preconditioned Congjugate Variants (Jacobi, Symmetric Successive Over-Relaxation, Incompleted Cholesky Decomposition, 1st-Order Neumann Series).
+          </p>
+
+          <div class="card-tags">
+            <span class="tag">C++</span>
+            <span class="tag">Numerical Linear Algebra</span>
+            <span class="tag">Computational Particle Physics</span>
+          </div>
+
+          <div class="card-links">
+             Documentation Unavailable (Research Code)  <a href="" target="_blank" rel="noopener"></a>
+            <a href="https://drive.google.com/file/d/1S8EOBbCy3Tc2xnwTzEgbgfJD6Fp-Mf5J/view?usp=sharing" target="_blank" rel="noopener">Research Poster →</a>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
       </div>
 
     </div>
