@@ -201,25 +201,52 @@
     gap: 16px;
   }
 
+  /* ---------- Updated Card Layout ---------- */
+  .card-list {
+    display: flex;
+    flex-direction: column;
+    gap: 32px; /* Increased gap between modules */
+    align-items: center;
+  }
+
   .card {
     display: flex;
-    gap: 16px;
+    flex-direction: column; /* Stacks images above text */
+    gap: 20px;
     border: 1px solid var(--border-default);
     background: var(--bg-inset);
     border-radius: var(--radius);
-    padding: 16px;
+    padding: 24px;
     transition: border-color 0.15s ease;
+    
+    /* Sizing to exact viewport targets */
+    width: 70vw;             /* 70% screen width */
+    min-height: 60vh;        /* 60% screen height */
+    box-sizing: border-box;
+
+    /* Centers the card on screen while breaking past the 900px main container limit */
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
   }
   .card:hover { border-color: #8b949e; }
 
-  .card-thumb {
-    width: 120px;
-    height: 90px;
-    object-fit: cover;
+  /* Grid Layout for the 3 Images */
+  .card-images {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 equal side-by-side columns */
+    gap: 12px;
+    width: 100%;
+  }
+
+  /* Force 7:5 Landscape Ratio on Images */
+  .card-images img {
+    width: 100%;
+    aspect-ratio: 7 / 5;   /* Enforces the 7:5 landscape aspect ratio */
+    object-fit: cover;     /* Crops neatly without stretching */
     border-radius: var(--radius);
     border: 1px solid var(--border-default);
-    flex-shrink: 0;
-    background: var(--bg-subtle); /* shows as a placeholder box if image is missing */
+    background: var(--bg-subtle);
   }
 
   .card-body { flex: 1; min-width: 0; }
@@ -504,65 +531,37 @@
   <section id="projects" class="page-section">
     <h2 class="section-title">Projects</h2>
 
-    <div class="card-list">
-
-      <!-- PROJECT CARD 1 -->
-      <div class="card">
-        <!-- EDIT: swap src for a screenshot/diagram of the project.
-             If you don't have an image yet, you can delete this <img> line
-             entirely — the layout still works without it. -->
-        <img class="card-thumb" src="assets/riscv-cpu.png" alt="RISC-V CPU block diagram">
-
-        <div class="card-body">
-          <div class="card-with-year">
-            <!-- EDIT: project title -->
-            <p class="card-title">RISC-V Pipelined CPU (RV32I)</p>
-            <!-- EDIT: year or date -->
-            <span class="card-year">2026</span>
-          </div>
-
-          <!-- EDIT: short description, 1-3 sentences -->
-          <p class="card-desc">
-            A 5-stage pipelined RISC-V CPU implemented in Verilog, supporting
-            the full RV32I instruction set with hazard detection, forwarding,
-            and branch resolution. All test cases passing.
-          </p>
-
-          <!-- EDIT: tags — copy/delete <span class="tag"> as needed -->
-          <div class="card-tags">
-            <span class="tag">Verilog</span>
-            <span class="tag">Computer Architecture</span>
-            <span class="tag">GTKWave</span>
-          </div>
-
-          <!-- EDIT: links — delete any you don't have -->
-          <div class="card-links">
-            <a href="https://github.com/yourusername/riscv-cpu" target="_blank" rel="noopener">Code →</a>
-            <a href="#" target="_blank" rel="noopener">Write-up →</a>
-          </div>
-        </div>
+    <div class="card">
+      <div class="card-images">
+        <img src="assets/riscv-cpu1.png" alt="RISC-V Diagram 1">
+        <img src="assets/riscv-cpu2.png" alt="RISC-V Diagram 2">
+        <img src="assets/riscv-cpu3.png" alt="RISC-V Diagram 3">
       </div>
 
-      <!-- PROJECT CARD 2 — duplicate this whole block for more projects -->
-      <div class="card">
-        <img class="card-thumb" src="assets/project2.png" alt="Description of project 2">
-        <div class="card-body">
-          <div class="card-with-year">
-            <p class="card-title">Second Project Title</p>
-            <span class="card-year">2025</span>
-          </div>
-          <p class="card-desc">
-            One or two sentences describing what this project does and why it's interesting.
-          </p>
-          <div class="card-tags">
-            <span class="tag">Tag One</span>
-            <span class="tag">Tag Two</span>
-          </div>
-          <div class="card-links">
-            <a href="#" target="_blank" rel="noopener">Code →</a>
-          </div>
+      <div class="card-body">
+        <div class="card-with-year">
+          <p class="card-title">RISC-V Pipelined CPU (RV32I)</p>
+          <span class="card-year">2026</span>
+        </div>
+
+        <p class="card-desc">
+          A 5-stage pipelined RISC-V CPU implemented in Verilog, supporting
+          the full RV32I instruction set with hazard detection, forwarding,
+          and branch resolution. All test cases passing.
+        </p>
+
+        <div class="card-tags">
+          <span class="tag">Verilog</span>
+          <span class="tag">Computer Architecture</span>
+          <span class="tag">GTKWave</span>
+        </div>
+
+        <div class="card-links">
+          <a href="https://github.com/yourusername/riscv-cpu" target="_blank" rel="noopener">Code →</a>
+          <a href="#" target="_blank" rel="noopener">Write-up →</a>
         </div>
       </div>
+    </div>
 
     </div>
   </section>
