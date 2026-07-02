@@ -531,37 +531,71 @@
   <section id="projects" class="page-section">
     <h2 class="section-title">Projects</h2>
 
-    <div class="card">
-      <div class="card-images">
-        <img src="assets/riscv-cpu1.png" alt="RISC-V Diagram 1">
-        <img src="assets/riscv-cpu2.png" alt="RISC-V Diagram 2">
-        <img src="assets/riscv-cpu3.png" alt="RISC-V Diagram 3">
+      <div class="card">
+        <div class="card-images">
+          <img src="assets/riscv-cpu-images/RISCV_CPU_Datapath_Final.png" alt="Pipelined Datapath">
+          <img src="assets/riscv-cpu-images/riscv-hazard-verification.png" alt="Verification Image">
+          <img src="assets/riscv-cpu-images/custom-riscv-single-cycle-datapath.png" alt="Single-Cycle Datapath">
+        </div>
+
+        <div class="card-body">
+          <div class="card-with-year">
+            <p class="card-title">Custom RISC-V Pipelined CPU</p>
+            <span class="card-year"></span>
+          </div>
+
+          <p class="card-desc">
+            · Built a Pipelined RISC-V CPU in Verilog RTL from scratch, implementing 37-instruction subset of RV32I ISA
+            · Designed custom CPU datapath, first implementing single-cycle CPU, then extending into a 5-stage pipelined
+            CPU (IF/ID/EX/MEM/WB) with forwarding, pipeline stalling, and write-through for full hazard resolution
+            · Verified CPU functionality across all instruction types, hazard scenarios, and components using hand-assembled
+            RV32I test programs, GTKWave waveform analysis, and isolated module-level testbenches
+          </p>
+
+          <div class="card-tags">
+            <span class="tag">Verilog HDL</span>
+            <span class="tag">Computer Architecture</span>
+            <span class="tag">GTKWave</span>
+          </div>
+
+          <div class="card-links">
+            <a href="https://github.com/jtkim00000/riscv-cpu" target="_blank" rel="noopener">Github Repo →</a>
+          </div>
+        </div>
       </div>
 
-      <div class="card-body">
-        <div class="card-with-year">
-          <p class="card-title">RISC-V Pipelined CPU (RV32I)</p>
-          <span class="card-year">2026</span>
+      <div class="card">
+        <div class="card-images">
+          <img src="assets/riscv-cpu-images/RISCV_CPU_Datapath_Final.png" alt="Pipelined Datapath">
+          <img src="assets/riscv-cpu-images/riscv-hazard-verification.png" alt="Verification Image">
+          <img src="assets/riscv-cpu-images/custom-riscv-single-cycle-datapath.png" alt="Single-Cycle Datapath">
         </div>
 
-        <p class="card-desc">
-          A 5-stage pipelined RISC-V CPU implemented in Verilog, supporting
-          the full RV32I instruction set with hazard detection, forwarding,
-          and branch resolution. All test cases passing.
-        </p>
+        <div class="card-body">
+          <div class="card-with-year">
+            <p class="card-title">Noise Detector PCB</p>
+            <span class="card-year"></span>
+          </div>
 
-        <div class="card-tags">
-          <span class="tag">Verilog</span>
-          <span class="tag">Computer Architecture</span>
-          <span class="tag">GTKWave</span>
-        </div>
+          <p class="card-desc">
+            · Built a Pipelined RISC-V CPU in Verilog RTL from scratch, implementing 37-instruction subset of RV32I ISA
+            · Designed custom CPU datapath, first implementing single-cycle CPU, then extending into a 5-stage pipelined
+            CPU (IF/ID/EX/MEM/WB) with forwarding, pipeline stalling, and write-through for full hazard resolution
+            · Verified CPU functionality across all instruction types, hazard scenarios, and components using hand-assembled
+            RV32I test programs, GTKWave waveform analysis, and isolated module-level testbenches
+          </p>
 
-        <div class="card-links">
-          <a href="https://github.com/yourusername/riscv-cpu" target="_blank" rel="noopener">Code →</a>
-          <a href="#" target="_blank" rel="noopener">Write-up →</a>
+          <div class="card-tags">
+            <span class="tag">Verilog HDL</span>
+            <span class="tag">Computer Architecture</span>
+            <span class="tag">GTKWave</span>
+          </div>
+
+          <div class="card-links">
+            <a href="https://github.com/jtkim00000/riscv-cpu" target="_blank" rel="noopener">Github Repo →</a>
+          </div>
         </div>
       </div>
-    </div>
 
     </div>
   </section>
