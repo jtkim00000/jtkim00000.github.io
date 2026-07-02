@@ -462,255 +462,151 @@
   <!-- ============================================================
        ABOUT SECTION
        ============================================================ -->
-  <section id="about" class="page-section active">
-
-    <div class="about-header">
-      <div class="about-text">
-        <!-- EDIT: your name and pronouns -->
-        <h1>Jesse Kim <span class="pronouns">(he/him)</span></h1>
-
-        <!-- EDIT: your intro paragraph(s). Keep each paragraph in its own <p> tag -->
-        <p>
-          I am an incoming second-year Electrical Engineering student
-          at the <strong>University of Illinois Urbana-Champaign</strong>.
-        </p>
-
-        <P>
-          My current interests lie in hardware, especially in its intersection with AI:
-          <ul>
-            <li>ASICs and FPGAs</li>
-            <li>Computer Architecture</li>
-            <li>GPU Computing</li>
-          </ul>
-        </P>
-
-        <p>
-          I am currently working as a research assistant as a GPU Kernel Engineer for a PhD.
-          Student in the Aerospace Department of Engineering, developing custom GPU Kernels to parallelize a 
-          particle physics simulation. 
-
-        </p>
-
-        <p>
-          Please use this website to learn more about my qualifications, projects, and education.
-        </p>
-
-        <p>
-          Resume:
-          <div class="link-row">
-          <a href="https://drive.google.com/file/d/1-cNJe3tHiEPKuCPQ067F_ZIm8aZ30_No/view?usp=sharing"> Jesse Kim's Resume</a> 
-
-        </div>
-        </p>
-
-        <!-- EDIT: your links row. Add or remove <a> tags as needed.
-             Each icon is just plain text/emoji here to keep this dependency-free —
-             swap in an SVG or icon font later if you want. -->
-        <p>
-          Contact Info:
-        </p>
-        <div class="link-row">
-          Email: <a href="jessetk267@gmail.com"> jessetk267@gmail.com</a> 
-
-          Linkedin: <a href="linkedin.com/in/jesse-kim-b51633308" target="_blank" rel="noopener"> linkedin.com/in/jesse-kim-b51633308</a>
-        </div>
-      </div>
-
-      <!-- EDIT: replace src with your own photo. See the README notes below
-           this file (or the chat message) for exactly how sizing works. -->
-      <img class="about-photo" src="assets/other/profile_photo.jpg" alt="Photo of Jesse Kim">
-    </div>
-
-  </section>
-
-  <!-- ============================================================
-       PROJECTS SECTION
-       Each .card is one project. Copy the whole <div class="card">...</div>
-       block to add another one.
-       ============================================================ -->
   <section id="projects" class="page-section">
     <h2 class="section-title">Projects</h2>
 
-      <div class="card">
-        <div class="card-images">
-          <img src="assets/riscv-cpu-images/image.png" alt="Pipelined Datapath">
-          <img src="assets/riscv-cpu-images/riscv-hazard-verification.png" alt="Verification Image">
-          <img src="assets/riscv-cpu-images/custom-riscv-single-cycle-datapath.png" alt="Single-Cycle Datapath">
-        </div>
-
-        <div class="card-body">
-          <div class="card-with-year">
-            <p class="card-title">Custom RISC-V Pipelined CPU</p>
-            <span class="card-year"></span>
-          </div>
-
-          <p class="card-desc">
-            Designed a custom 5-stage Pipelined RV32I CPU in Verilog. 
-            The CPU is capable of forwarding, pipeline stalling, a register write-through for full hazard resolution. Hardwired Control Unit, Harvard Architecture.
-          </p>
-
-          <div class="card-tags">
-            <span class="tag">Verilog HDL</span>
-            <span class="tag">Computer Architecture</span>
-            <span class="tag">GTKWave</span>
-          </div>
-
-          <div class="card-links">
-            <a href="https://github.com/jtkim00000/riscv-cpu" target="_blank" rel="noopener">Github →</a>
-          </div>
-        </div>
+    <div class="card">
+      <div class="card-images">
+        <img src="assets/riscv-cpu-images/image.png" alt="Pipelined Datapath">
+        <img src="assets/riscv-cpu-images/riscv-hazard-verification.png" alt="Verification Image">
+        <img src="assets/riscv-cpu-images/custom-riscv-single-cycle-datapath.png" alt="Single-Cycle Datapath">
       </div>
 
-
-
-
-      <div class="card">
-        <div class="card-images">
-          <img src="assets/noise-detector-images/noise-detector-circuit.png" alt="Circuit Diagram">
-          <img src="assets/noise-detector-images/noise_detector.png" alt="PCB Image">
-          <img src="assets/noise-detector-images/3-stage-comparator.png" alt="3-stage Comparator">
+      <div class="card-body">
+        <div class="card-with-year">
+          <p class="card-title">Custom RISC-V Pipelined CPU</p>
+          <span class="card-year"></span>
         </div>
 
-        <div class="card-body">
-          <div class="card-with-year">
-            <p class="card-title">Noise Detector PCB</p>
-            <span class="card-year"></span>
-          </div>
+        <p class="card-desc">
+          Designed a custom 5-stage Pipelined RV32I CPU in Verilog. 
+          The CPU is capable of forwarding, pipeline stalling, a register write-through for full hazard resolution. Hardwired Control Unit, Harvard Architecture.
+        </p>
 
-          <p class="card-desc">
-            Designed custom PCB noise detector with  analog signal chain (amplification → peak detection → timed delay → threshold comparison) using 
-            LM358 op-amps, LM311 comparator, and Schmitt Trigger Inverter
-          </p>
-
-          <div class="card-tags">
-            <span class="tag">PCB Design</span>
-            <span class="tag">Analog Circuits</span>
-            <span class="tag">Oscilloscope</span>
-          </div>
-
-          <div class="card-links">
-            <a href="https://github.com/jtkim00000/noise-detector-pcb" target="_blank" rel="noopener">Github →</a>
-          </div>
+        <div class="card-tags">
+          <span class="tag">Verilog HDL</span>
+          <span class="tag">Computer Architecture</span>
+          <span class="tag">GTKWave</span>
         </div>
 
-
-
-
-        <div class="card">
-        <div class="card-images">
-          <img src="assets/lc3-cpu-images/lc3-datapath.png" alt="CPU Datapath">
-          <img src="assets/lc3-cpu-images/lc3-fsm.png" alt="Control Unit FSM">
-          <img src="assets/lc3-cpu-images/lc3-microsequencer.png" alt="Microsequencer for Control Unit">
+        <div class="card-links">
+          <a href="https://github.com/jtkim00000/riscv-cpu" target="_blank" rel="noopener">Github →</a>
         </div>
-
-        <div class="card-body">
-          <div class="card-with-year">
-            <p class="card-title">LC-3 CPU</p>
-            <span class="card-year">*images are from the Appendicies of Patt and Patel*</span>
-          </div>
-
-          <p class="card-desc">
-            Built a Verilog RTL implementation of the CPU from Little Computer 3, implementing 17-instruction subset. Multi-cycle CPU, Microprogrammed Control Unit, Von Neumann Architecture.
-          </p>
-
-          <div class="card-tags">
-            <span class="tag">Verilog HDL</span>
-            <span class="tag">Computer Architecture</span>
-            <span class="tag">GTKWave</span>
-          </div>
-
-          <div class="card-links">
-            <a href="https://github.com/jtkim00000/lc3-cpu" target="_blank" rel="noopener">Github →</a>
-          </div>
-        </div>
-
-
-
-
-
-
-
-        <div class="card">
-        <div class="card-images">
-          <img src="assets/paticle-behavior-images/image.png" alt="Algorithm Comparison">
-          <img src="assets/paticle-behavior-images/(Helix + ExB Drift).png" alt="ExB Drift">
-          <img src="assets/paticle-behavior-images/v_x distribution.png" alt="Relaxation to Maxwellian VD">
-        </div>
-
-        <div class="card-body">
-          <div class="card-with-year">
-            <p class="card-title">3D Single Particle Trajectory Simulation and Monte Carlo Collision Simulation</p>
-            <span class="card-year"></span>
-          </div>
-
-          <p class="card-desc">
-            Designed particle tracking algorithms to compare Forward Euler, Runge-Kutta, and Boris algorithm methods of Particle tracking. 
-            Used Boris algorithm to build 3D single particle simulation to study ExB single particle motions. 
-            Developed AR sampling algorithm and particle collision simulation to study the relaxation to Maxwellian Velocity distributions under high particle collision frequency.
-          </p>
-
-          <div class="card-tags">
-            <span class="tag">Python</span>
-            <span class="tag">Numpy</span>
-            <span class="tag">Matplotlib</span>
-          </div>
-
-          <div class="card-links">
-            Github (Coming Soon) <a href="" target="_blank" rel="noopener"></a>
-          </div>
-        </div>
-
-
-
-
-
-
-        <div class="card">
-        <div class="card-images">
-          <img src="assets/poisson-images/Screenshot 2026-07-02 051334.png" alt="Electric Potential">
-          <img src="assets/poisson-images/Screenshot 2026-07-02 051534.png" alt="Thomas Algorithm">
-          <img src="assets/poisson-images/Screenshot 2026-07-02 051416.png" alt="SSOR Analysis">
-        </div>
-
-        <div class="card-body">
-          <div class="card-with-year">
-            <p class="card-title">1D Poisson Solvers for Particle-In-Cell Simulation</p>
-            <span class="card-year"></span>
-          </div>
-
-          <p class="card-desc">
-            Designed various 1D Poisson Solvers to accelerate a Particle-In-Cell Simulation.
-             Implemented 1 direct solver, the Thomas Algorithm, and 4 Preconditioned Congjugate Variants (Jacobi, Symmetric Successive Over-Relaxation, Incompleted Cholesky Decomposition, 1st-Order Neumann Series).
-          </p>
-
-          <div class="card-tags">
-            <span class="tag">C++</span>
-            <span class="tag">Numerical Linear Algebra</span>
-            <span class="tag">Computational Particle Physics</span>
-          </div>
-
-          <div class="card-links">
-             Documentation Unavailable (Research Code)  <a href="" target="_blank" rel="noopener"></a>
-            <a href="https://drive.google.com/file/d/1S8EOBbCy3Tc2xnwTzEgbgfJD6Fp-Mf5J/view?usp=sharing" target="_blank" rel="noopener">Research Poster →</a>
-          </div>
-        </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
+      </div>
+    </div> <div class="card">
+      <div class="card-images">
+        <img src="assets/noise-detector-images/noise-detector-circuit.png" alt="Circuit Diagram">
+        <img src="assets/noise-detector-images/noise_detector.png" alt="PCB Image">
+        <img src="assets/noise-detector-images/3-stage-comparator.png" alt="3-stage Comparator">
       </div>
 
-    </div>
-  </section>
+      <div class="card-body">
+        <div class="card-with-year">
+          <p class="card-title">Noise Detector PCB</p>
+          <span class="card-year"></span>
+        </div>
+
+        <p class="card-desc">
+          Designed custom PCB noise detector with analog signal chain (amplification → peak detection → timed delay → threshold comparison) using 
+          LM358 op-amps, LM311 comparator, and Schmitt Trigger Inverter
+        </p>
+
+        <div class="card-tags">
+          <span class="tag">PCB Design</span>
+          <span class="tag">Analog Circuits</span>
+          <span class="tag">Oscilloscope</span>
+        </div>
+
+        <div class="card-links">
+          <a href="https://github.com/jtkim00000/noise-detector-pcb" target="_blank" rel="noopener">Github →</a>
+        </div>
+      </div>
+    </div> <div class="card">
+      <div class="card-images">
+        <img src="assets/lc3-cpu-images/lc3-datapath.png" alt="CPU Datapath">
+        <img src="assets/lc3-cpu-images/lc3-fsm.png" alt="Control Unit FSM">
+        <img src="assets/lc3-cpu-images/lc3-microsequencer.png" alt="Microsequencer for Control Unit">
+      </div>
+
+      <div class="card-body">
+        <div class="card-with-year">
+          <p class="card-title">LC-3 CPU</p>
+          <span class="card-year">*images are from the Appendicies of Patt and Patel*</span>
+        </div>
+
+        <p class="card-desc">
+          Built a Verilog RTL implementation of the CPU from Little Computer 3, implementing 17-instruction subset. Multi-cycle CPU, Microprogrammed Control Unit, Von Neumann Architecture.
+        </p>
+
+        <div class="card-tags">
+          <span class="tag">Verilog HDL</span>
+          <span class="tag">Computer Architecture</span>
+          <span class="tag">GTKWave</span>
+        </div>
+
+        <div class="card-links">
+          <a href="https://github.com/jtkim00000/lc3-cpu" target="_blank" rel="noopener">Github →</a>
+        </div>
+      </div>
+    </div> <div class="card">
+      <div class="card-images">
+        <img src="assets/paticle-behavior-images/image.png" alt="Algorithm Comparison">
+        <img src="assets/paticle-behavior-images/(Helix + ExB Drift).png" alt="ExB Drift">
+        <img src="assets/paticle-behavior-images/v_x distribution.png" alt="Relaxation to Maxwellian VD">
+      </div>
+
+      <div class="card-body">
+        <div class="card-with-year">
+          <p class="card-title">3D Single Particle Trajectory Simulation and Monte Carlo Collision Simulation</p>
+          <span class="card-year"></span>
+        </div>
+
+        <p class="card-desc">
+          Designed particle tracking algorithms to compare Forward Euler, Runge-Kutta, and Boris algorithm methods of Particle tracking. 
+          Used Boris algorithm to build 3D single particle simulation to study ExB single particle motions. 
+          Developed AR sampling algorithm and particle collision simulation to study the relaxation to Maxwellian Velocity distributions under high particle collision frequency.
+        </p>
+
+        <div class="card-tags">
+          <span class="tag">Python</span>
+          <span class="tag">Numpy</span>
+          <span class="tag">Matplotlib</span>
+        </div>
+
+        <div class="card-links">
+          Github (Coming Soon) <a href="" target="_blank" rel="noopener"></a>
+        </div>
+      </div>
+    </div> <div class="card">
+      <div class="card-images">
+        <img src="assets/poisson-images/Screenshot 2026-07-02 051334.png" alt="Electric Potential">
+        <img src="assets/poisson-images/Screenshot 2026-07-02 051534.png" alt="Thomas Algorithm">
+        <img src="assets/poisson-images/Screenshot 2026-07-02 051416.png" alt="SSOR Analysis">
+      </div>
+
+      <div class="card-body">
+        <div class="card-with-year">
+          <p class="card-title">1D Poisson Solvers for Particle-In-Cell Simulation</p>
+          <span class="card-year"></span>
+        </div>
+
+        <p class="card-desc">
+          Designed various 1D Poisson Solvers to accelerate a Particle-In-Cell Simulation.
+          Implemented 1 direct solver, the Thomas Algorithm, and 4 Preconditioned Congjugate Variants (Jacobi, Symmetric Successive Over-Relaxation, Incompleted Cholesky Decomposition, 1st-Order Neumann Series).
+        </p>
+
+        <div class="card-tags">
+          <span class="tag">C++</span>
+          <span class="tag">Numerical Linear Algebra</span>
+          <span class="tag">Computational Particle Physics</span>
+        </div>
+
+        <div class="card-links">
+          Documentation Unavailable (Research Code)  <a href="" target="_blank" rel="noopener"></a>
+          <a href="https://drive.google.com/file/d/1S8EOBbCy3Tc2xnwTzEgbgfJD6Fp-Mf5J/view?usp=sharing" target="_blank" rel="noopener">Research Poster →</a>
+        </div>
+      </div>
+    </div> </section>
 
   <!-- ============================================================
        EDUCATION SECTION
