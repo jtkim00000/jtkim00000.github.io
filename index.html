@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Name — Portfolio</title>
+<meta name="description" content="Portfolio of Your Name">
+
+<!--
+  ============================================================
+  HOW THIS FILE IS ORGANIZED
+  ============================================================
+  1. <style> block   — all CSS, using GitHub's dark theme colors
+  2. <nav>           — the top tab bar (About / Projects / Education)
+  3. <section id="about">, <section id="projects">, <section id="education">
+                      — one section per tab, only one shown at a time
+  4. <script>         — tiny bit of JS that swaps which section is visible
+
+  Every place you're meant to edit is marked with a comment like:
+  <!-- EDIT: ... -->
+  Search for "EDIT:" in your code editor to jump between them.
+  ============================================================
+-->
+
+<style>
+  /* ============================================================
+     DESIGN TOKENS
+     These CSS variables are GitHub's actual dark mode palette.
+     Change values here and the whole site updates — this is the
+     easiest way to customize your color scheme later.
+     ============================================================ */
+  :root {
+    --bg-canvas: #0d1117;      /* main page background */
+    --bg-inset: #161b22;       /* card / panel background, slightly lighter */
+    --bg-subtle: #21262d;      /* hover states, subtle fills */
+    --border-default: #30363d; /* standard borders/dividers */
+    --border-muted: #21262d;   /* faint borders */
+    --text-primary: #e6edf3;   /* main body text */
+    --text-secondary: #8b949e; /* secondary/muted text */
+    --text-link: #58a6ff;      /* links, accent color (GitHub blue) */
+    --text-link-hover: #79c0ff;
+    --accent-emphasis: #1f6feb;/* buttons, active states */
+    --success: #3fb950;        /* optional accent, e.g. "open to work" dot */
+    --radius: 6px;             /* GitHub's standard corner radius */
+    --max-width: 900px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--bg-canvas);
+    color: var(--text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica,
+                 Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a {
+    color: var(--text-link);
+    text-decoration: none;
+  }
+  a:hover { color: var(--text-link-hover); text-decoration: underline; }
+
+  /* ---------- Top nav / tabs ---------- */
+  header {
+    border-bottom: 1px solid var(--border-default);
+    background: var(--bg-canvas);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  nav {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 0 24px;
+    overflow-x: auto;
+  }
+
+  .nav-tab {
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: var(--text-secondary);
+    font-size: 14px;
+    font-weight: 500;
+    padding: 16px 12px;
+    cursor: pointer;
+    white-space: nowrap;
+    font-family: inherit;
+  }
+
+  .nav-tab:hover {
+    color: var(--text-primary);
+    text-decoration: none;
+  }
+
+  .nav-tab.active {
+    color: var(--text-primary);
+    border-bottom-color: #f78166; /* GitHub's active-tab underline color */
+  }
+
+  /* ---------- Page sections ---------- */
+  main {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  .page-section { display: none; }
+  .page-section.active { display: block; }
+
+  /* ---------- About section ---------- */
+  .about-header {
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+    margin-bottom: 40px;
+  }
+
+  .about-text { flex: 1; min-width: 0; }
+
+  .about-text h1 {
+    font-size: 28px;
+    margin: 0 0 4px;
+  }
+
+  .pronouns {
+    color: var(--text-secondary);
+    font-weight: 400;
+    font-size: 18px;
+  }
+
+  .pronunciation {
+    color: var(--text-secondary);
+    font-style: italic;
+    font-size: 14px;
+    margin: 4px 0 20px;
+  }
+
+  .about-text p { margin: 0 0 16px; }
+
+  .about-photo {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;         /* circle, GitHub-avatar style */
+    object-fit: cover;
+    border: 1px solid var(--border-default);
+    flex-shrink: 0;
+  }
+
+  /* status badge, e.g. "open to opportunities" */
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--bg-inset);
+    border: 1px solid var(--border-default);
+    border-radius: 999px;
+    padding: 4px 12px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+  }
+  .status-badge .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--success);
+  }
+
+  /* links row under the intro, e.g. email / CV / socials */
+  .link-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 20px;
+    font-size: 14px;
+  }
+  .link-row a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  h2.section-title {
+    font-size: 22px;
+    border-bottom: 1px solid var(--border-default);
+    padding-bottom: 12px;
+    margin: 0 0 24px;
+  }
+
+  /* ---------- Card (used for projects + publications) ---------- */
+  .card-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .card {
+    display: flex;
+    gap: 16px;
+    border: 1px solid var(--border-default);
+    background: var(--bg-inset);
+    border-radius: var(--radius);
+    padding: 16px;
+    transition: border-color 0.15s ease;
+  }
+  .card:hover { border-color: #8b949e; }
+
+  .card-thumb {
+    width: 120px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: var(--radius);
+    border: 1px solid var(--border-default);
+    flex-shrink: 0;
+    background: var(--bg-subtle); /* shows as a placeholder box if image is missing */
+  }
+
+  .card-body { flex: 1; min-width: 0; }
+
+  .card-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 6px;
+    color: var(--text-primary);
+  }
+
+  .card-meta {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin: 0 0 6px;
+  }
+
+  .card-desc {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin: 0 0 8px;
+  }
+
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+  }
+  .tag {
+    font-size: 12px;
+    background: var(--bg-subtle);
+    border: 1px solid var(--border-default);
+    color: var(--text-secondary);
+    padding: 2px 8px;
+    border-radius: 999px;
+  }
+
+  .card-links {
+    margin-top: 8px;
+    display: flex;
+    gap: 14px;
+    font-size: 13px;
+  }
+
+  .card-year {
+    color: var(--text-secondary);
+    font-size: 13px;
+    flex-shrink: 0;
+    padding-top: 2px;
+  }
+
+  /* card layout with year on the right, like the reference screenshot */
+  .card-with-year {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    width: 100%;
+  }
+
+  /* ---------- Education ---------- */
+  .edu-item {
+    border-left: 2px solid var(--border-default);
+    padding-left: 20px;
+    padding-bottom: 28px;
+    position: relative;
+  }
+  .edu-item::before {
+    content: "";
+    position: absolute;
+    left: -7px;
+    top: 4px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--bg-canvas);
+    border: 2px solid var(--text-link);
+  }
+  .edu-item:last-child { padding-bottom: 0; }
+
+  .edu-school {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 2px;
+  }
+  .edu-degree {
+    font-size: 14px;
+    color: var(--text-primary);
+    margin: 0 0 2px;
+  }
+  .edu-meta {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin: 0 0 8px;
+  }
+  .edu-details {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin: 0;
+  }
+
+  /* ---------- Footer ---------- */
+  footer {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 24px;
+    border-top: 1px solid var(--border-muted);
+    color: var(--text-secondary);
+    font-size: 13px;
+    text-align: center;
+  }
+
+  /* ---------- Responsive: stack photo above text on small screens ---------- */
+  @media (max-width: 640px) {
+    .about-header {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .link-row { justify-content: center; }
+    .card { flex-direction: column; }
+    .card-thumb { width: 100%; height: 160px; }
+    .card-with-year { flex-direction: column; gap: 4px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     NAV / TABS
+     To add a new tab: copy one <button> line, give it a new
+     data-target that matches a <section id="..."> below.
+     ============================================================ -->
+<header>
+  <nav>
+    <button class="nav-tab active" data-target="about">About</button>
+    <button class="nav-tab" data-target="projects">Projects</button>
+    <button class="nav-tab" data-target="education">Education</button>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ============================================================
+       ABOUT SECTION
+       ============================================================ -->
+  <section id="about" class="page-section active">
+
+    <div class="about-header">
+      <div class="about-text">
+        <!-- EDIT: your name and pronouns -->
+        <h1>Your Name <span class="pronouns">(she/her)</span></h1>
+
+        <!-- EDIT: delete this line if you don't need a pronunciation guide -->
+        <p class="pronunciation">Pronounced as "Your Name"</p>
+
+        <!-- EDIT: optional status badge — delete the whole <div> if not needed -->
+        <div class="status-badge">
+          <span class="dot"></span>
+          Open to internship opportunities
+        </div>
+
+        <!-- EDIT: your intro paragraph(s). Keep each paragraph in its own <p> tag -->
+        <p>
+          I am a <strong>second-year Electrical Engineering student</strong>
+          at Your University, interested in
+          <strong>digital design</strong> and <strong>computer architecture</strong>.
+        </p>
+
+        <p>
+          I'm currently building a <a href="#projects">RISC-V pipelined CPU in Verilog</a>
+          as part of my coursework, focused on hazard resolution and pipeline design.
+        </p>
+
+        <p>
+          Outside of coursework, I enjoy [hobby], [hobby], and [hobby].
+        </p>
+
+        <!-- EDIT: your links row. Add or remove <a> tags as needed.
+             Each icon is just plain text/emoji here to keep this dependency-free —
+             swap in an SVG or icon font later if you want. -->
+        <div class="link-row">
+          <a href="mailto:you@example.com">✉️ Email</a>
+          <a href="https://github.com/yourusername" target="_blank" rel="noopener">💻 GitHub</a>
+          <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener">🔗 LinkedIn</a>
+          <a href="/resume.pdf" target="_blank" rel="noopener">📄 Resume</a>
+        </div>
+      </div>
+
+      <!-- EDIT: replace src with your own photo. See the README notes below
+           this file (or the chat message) for exactly how sizing works. -->
+      <img class="about-photo" src="assets/profile.jpg" alt="Photo of Your Name">
+    </div>
+
+  </section>
+
+  <!-- ============================================================
+       PROJECTS SECTION
+       Each .card is one project. Copy the whole <div class="card">...</div>
+       block to add another one.
+       ============================================================ -->
+  <section id="projects" class="page-section">
+    <h2 class="section-title">Projects</h2>
+
+    <div class="card-list">
+
+      <!-- PROJECT CARD 1 -->
+      <div class="card">
+        <!-- EDIT: swap src for a screenshot/diagram of the project.
+             If you don't have an image yet, you can delete this <img> line
+             entirely — the layout still works without it. -->
+        <img class="card-thumb" src="assets/riscv-cpu.png" alt="RISC-V CPU block diagram">
+
+        <div class="card-body">
+          <div class="card-with-year">
+            <!-- EDIT: project title -->
+            <p class="card-title">RISC-V Pipelined CPU (RV32I)</p>
+            <!-- EDIT: year or date -->
+            <span class="card-year">2026</span>
+          </div>
+
+          <!-- EDIT: short description, 1-3 sentences -->
+          <p class="card-desc">
+            A 5-stage pipelined RISC-V CPU implemented in Verilog, supporting
+            the full RV32I instruction set with hazard detection, forwarding,
+            and branch resolution. All test cases passing.
+          </p>
+
+          <!-- EDIT: tags — copy/delete <span class="tag"> as needed -->
+          <div class="card-tags">
+            <span class="tag">Verilog</span>
+            <span class="tag">Computer Architecture</span>
+            <span class="tag">GTKWave</span>
+          </div>
+
+          <!-- EDIT: links — delete any you don't have -->
+          <div class="card-links">
+            <a href="https://github.com/yourusername/riscv-cpu" target="_blank" rel="noopener">Code →</a>
+            <a href="#" target="_blank" rel="noopener">Write-up →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECT CARD 2 — duplicate this whole block for more projects -->
+      <div class="card">
+        <img class="card-thumb" src="assets/project2.png" alt="Description of project 2">
+        <div class="card-body">
+          <div class="card-with-year">
+            <p class="card-title">Second Project Title</p>
+            <span class="card-year">2025</span>
+          </div>
+          <p class="card-desc">
+            One or two sentences describing what this project does and why it's interesting.
+          </p>
+          <div class="card-tags">
+            <span class="tag">Tag One</span>
+            <span class="tag">Tag Two</span>
+          </div>
+          <div class="card-links">
+            <a href="#" target="_blank" rel="noopener">Code →</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       EDUCATION SECTION
+       Each .edu-item is one school/degree, shown as a timeline.
+       ============================================================ -->
+  <section id="education" class="page-section">
+    <h2 class="section-title">Education</h2>
+
+    <!-- EDU ITEM 1 -->
+    <div class="edu-item">
+      <!-- EDIT: school name -->
+      <p class="edu-school">Your University</p>
+      <!-- EDIT: degree -->
+      <p class="edu-degree">B.S. in Electrical Engineering</p>
+      <!-- EDIT: dates / honors -->
+      <p class="edu-meta">Expected May 2028 · GPA 3.9/4.0</p>
+      <!-- EDIT: optional extra detail, e.g. relevant coursework -->
+      <p class="edu-details">
+        Relevant coursework: Digital Logic Design, Computer Architecture,
+        Signals &amp; Systems, Embedded Systems.
+      </p>
+    </div>
+
+    <!-- EDU ITEM 2 — duplicate for more schools -->
+    <div class="edu-item">
+      <p class="edu-school">Your High School</p>
+      <p class="edu-degree">High School Diploma</p>
+      <p class="edu-meta">Graduated May 2024</p>
+      <p class="edu-details"></p>
+    </div>
+
+  </section>
+
+</main>
+
+<footer>
+  <!-- EDIT: footer text -->
+  © 2026 Your Name. Built with plain HTML/CSS.
+</footer>
+
+<script>
+  // ============================================================
+  // TAB SWITCHING LOGIC
+  // You shouldn't need to touch this — it just reads data-target
+  // from whichever button was clicked, and shows the matching
+  // <section id="..."> while hiding the others.
+  // ============================================================
+  const tabs = document.querySelectorAll('.nav-tab');
+  const sections = document.querySelectorAll('.page-section');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = tab.getAttribute('data-target');
+
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      sections.forEach(s => s.classList.toggle('active', s.id === target));
+
+      // update the URL hash so the tab is bookmarkable/shareable
+      history.replaceState(null, '', '#' + target);
+    });
+  });
+
+  // on page load, open whichever tab matches the URL hash (if any)
+  window.addEventListener('DOMContentLoaded', () => {
+    const hash = window.location.hash.replace('#', '');
+    const matchingTab = document.querySelector(`.nav-tab[data-target="${hash}"]`);
+    if (matchingTab) matchingTab.click();
+  });
+</script>
+
+</body>
+</html>
