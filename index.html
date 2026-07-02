@@ -368,7 +368,7 @@
       text-align: center;
     }
     .link-row { justify-content: center; }
-    .card { flex-direction: column; padding: 8px 6px; }
+    .card { flex-direction: column; }
     .card-thumb { width: 100%; height: 160px; }
     .card-with-year { flex-direction: column; gap: 4px; }
   }
@@ -461,6 +461,72 @@
 
   <!-- ============================================================
        ABOUT SECTION
+       ============================================================ -->
+  <section id="about" class="page-section active">
+
+    <div class="about-header">
+      <div class="about-text">
+        <!-- EDIT: your name and pronouns -->
+        <h1>Jesse Kim <span class="pronouns">(he/him)</span></h1>
+
+        <!-- EDIT: your intro paragraph(s). Keep each paragraph in its own <p> tag -->
+        <p>
+          I am an incoming second-year Electrical Engineering student
+          at the <strong>University of Illinois Urbana-Champaign</strong>.
+        </p>
+
+        <P>
+          My current interests lie in hardware, especially in its intersection with AI:
+          <ul>
+            <li>ASICs and FPGAs</li>
+            <li>Computer Architecture</li>
+            <li>GPU Computing</li>
+          </ul>
+        </P>
+
+        <p>
+          I am currently working as a research assistant as a GPU Kernel Engineer for a PhD.
+          Student in the Aerospace Department of Engineering, developing custom GPU Kernels to parallelize a 
+          particle physics simulation. 
+
+        </p>
+
+        <p>
+          Please use this website to learn more about my qualifications, projects, and education.
+        </p>
+
+        <p>
+          Resume:
+          <div class="link-row">
+          <a href="https://drive.google.com/file/d/1-cNJe3tHiEPKuCPQ067F_ZIm8aZ30_No/view?usp=sharing"> Jesse Kim's Resume</a> 
+
+        </div>
+        </p>
+
+        <!-- EDIT: your links row. Add or remove <a> tags as needed.
+             Each icon is just plain text/emoji here to keep this dependency-free —
+             swap in an SVG or icon font later if you want. -->
+        <p>
+          Contact Info:
+        </p>
+        <div class="link-row">
+          Email: <a href="https://jessetk267@gmail.com"> jessetk267@gmail.com</a> 
+
+          Linkedin: <a href="https://linkedin.com/in/jesse-kim-b51633308" target="_blank" rel="noopener"> linkedin.com/in/jesse-kim-b51633308</a>
+        </div>
+      </div>
+
+      <!-- EDIT: replace src with your own photo. See the README notes below
+           this file (or the chat message) for exactly how sizing works. -->
+      <img class="about-photo" src="assets/other/profile_photo.jpg" alt="Photo of Jesse Kim">
+    </div>
+
+  </section>
+
+  <!-- ============================================================
+       PROJECTS SECTION
+       Each .card is one project. Copy the whole <div class="card">...</div>
+       block to add another one.
        ============================================================ -->
   <section id="projects" class="page-section">
     <h2 class="section-title">Projects</h2>
