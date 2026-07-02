@@ -345,53 +345,74 @@
     .card-thumb { width: 100%; height: 160px; }
     .card-with-year { flex-direction: column; gap: 4px; }
   }
-  /* ---------- Course list (Unofficial Transcript) ---------- */
-.course-list {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
+
+  /* ---------- Transcript table ---------- */
+.transcript-group {
+  margin-bottom: 28px;
 }
 
-.course-item {
-  border: 1px solid var(--border-default);
-  background: var(--bg-inset);
-  border-radius: var(--radius);
-  padding: 14px 16px;
-}
-
-.course-header {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.course-name {
+.transcript-term {
   font-size: 15px;
   font-weight: 600;
   color: var(--text-primary);
-  margin: 0;
+  margin: 0 0 10px;
 }
 
-.course-grade {
+.transcript-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--bg-inset);
+}
+
+.transcript-table th,
+.transcript-table td {
+  border: 1px solid var(--border-default);
+  padding: 10px 14px;
+  text-align: center;
+  vertical-align: middle;
   font-size: 14px;
-  font-weight: 600;
-  color: var(--text-secondary);
-  flex-shrink: 0;
 }
 
-.course-desc {
-  font-size: 13px;
+.transcript-table th {
+  background: var(--bg-subtle);
   color: var(--text-secondary);
-  margin: 6px 0 0;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.transcript-table td {
+  color: var(--text-primary);
+}
+
+.transcript-table .course-code {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.transcript-table .course-name-cell {
+  text-align: left;
+}
+
+.transcript-table .grade-cell {
+  font-weight: 600;
+  color: var(--success); /* green grade, matches your reference image */
 }
 
 @media (max-width: 640px) {
-  .course-header {
-    flex-direction: column;
-    gap: 2px;
+  .transcript-table {
+    font-size: 12px;
+  }
+  .transcript-table th,
+  .transcript-table td {
+    padding: 8px 6px;
   }
 }
+
 </style>
 </head>
 <body>
@@ -548,15 +569,14 @@
     <!-- EDU ITEM 1 -->
     <div class="edu-item">
       <!-- EDIT: school name -->
-      <p class="edu-school">Your University</p>
+      <p class="edu-school">University of Illinois Urbana-Champaign</p>
       <!-- EDIT: degree -->
-      <p class="edu-degree">B.S. in Electrical Engineering</p>
+      <p class="edu-degree">B.S. Electrical Engineering</p>
       <!-- EDIT: dates / honors -->
-      <p class="edu-meta">Expected May 2028 · GPA 3.9/4.0</p>
+      <p class="edu-meta">Expected May 2029 · GPA 4.00/4.00</p>
       <!-- EDIT: optional extra detail, e.g. relevant coursework -->
       <p class="edu-details">
-        Relevant coursework: Digital Logic Design, Computer Architecture,
-        Signals &amp; Systems, Embedded Systems.
+        Urbana, IL
       </p>
     </div>
 
@@ -564,7 +584,7 @@
     <div class="edu-item">
       <p class="edu-school">Homestead High School</p>
       <p class="edu-degree">High School Diploma</p>
-      <p class="edu-meta">Graduated May 2025</p>
+      <p class="edu-meta">Graduated May 2025 · GPA 3.98/4.00</p>
       <p class="edu-details">Cupertino, CA</p>
     </div>
 
@@ -587,29 +607,76 @@
   </div>
 
   <!-- COURSE ITEM 2 — copy this block for each additional class -->
-  <div class="course-item">
-    <div class="course-header">
-      <p class="course-name">Computer Architecture</p>
-      <span class="course-grade">A</span>
-    </div>
-    <p class="course-desc">
-      CPU design, pipelining, memory hierarchy, and instruction set architecture.
-    </p>
-  </div>
+  
+  <h2 class="section-title">Unofficial Transcript</h2>
 
-  <div class="course-item">
-    <div class="course-header">
-      <p class="course-name">Signals &amp; Systems</p>
-      <span class="course-grade">A-</span>
-    </div>
-    <p class="course-desc">
-      Continuous and discrete-time signal analysis, Fourier and Laplace transforms.
-    </p>
-  </div>
+<!-- TERM GROUP 1 -->
+<div class="transcript-group">
+  <!-- EDIT: semester heading -->
+  <p class="transcript-term">Spring 2026</p>
 
+  <table class="transcript-table">
+    <thead>
+      <tr>
+        <th>Class</th>
+        <th>Name</th>
+        <th>Taken</th>
+        <th>Grade</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- EDIT: copy this <tr> for each class in this term -->
+      <tr>
+        <td class="course-code">ECE 120</td>
+        <td class="course-name-cell">Intro to Computing</td>
+        <td>Spring 2026</td>
+        <td class="grade-cell">A</td>
+      </tr>
+      <tr>
+        <td class="course-code">ECE 210</td>
+        <td class="course-name-cell">Analog Signal Processing</td>
+        <td>Spring 2026</td>
+        <td class="grade-cell">A</td>
+      </tr>
+      <tr>
+        <td class="course-code">MATH 257</td>
+        <td class="course-name-cell">Linear Algebra</td>
+        <td>Spring 2026</td>
+        <td class="grade-cell">A-</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- TERM GROUP 2 — copy this whole block for each additional semester -->
+  <div class="transcript-group">
+    <p class="transcript-term">Fall 2025</p>
+
+    <table class="transcript-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Name</th>
+          <th>Taken</th>
+          <th>Grade</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="course-code">ECE 110</td>
+          <td class="course-name-cell">Intro to Electronics</td>
+          <td>Fall 2025</td>
+          <td class="grade-cell">A</td>
+        </tr>
+        <tr>
+          <td class="course-code">MATH 241</td>
+          <td class="course-name-cell">Calculus III</td>
+          <td>Fall 2025</td>
+          <td class="grade-cell">A</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-      </p>
-    </div>
 
   </section>
 
