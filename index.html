@@ -69,10 +69,17 @@
   /* ---------- Top nav / tabs ---------- */
   header {
     border-bottom: 1px solid var(--border-default);
-    background: var(--bg-canvas);
+    background: var(--accent-emphasis);
     position: sticky;
     top: 0;
     z-index: 10;
+  }
+
+  .site-icon {
+  position: absolute;
+  left: 16px; /* distance from true edge, adjust to taste */
+  top: 50%;
+  transform: translateY(-50%); /* vertical centering regardless of nav height */
   }
 
   nav {
@@ -458,13 +465,15 @@
      ============================================================ -->
 <header>
   <nav>
-    <a href="#about" class="site-icon" data-target="about">
-      <img src="assets/icon.png" alt="Home" width="48" height="48">
-    </a>
     <button class="nav-tab active" data-target="about">About</button>
     <button class="nav-tab" data-target="projects">Projects</button>
     <button class="nav-tab" data-target="education">Education</button>
   </nav>
+  <site-icon>
+    <a href="#about" class="site-icon" data-target="about">
+      <img src="assets/icon.png" alt="Home" width="48" height="48">
+    </a>
+  </site-icon>
 </header>
 
 <main>
@@ -915,6 +924,7 @@
 
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
+      e.preventDefault();
       const target = tab.getAttribute('data-target');
 
       tabs.forEach(t => t.classList.remove('active'));
