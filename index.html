@@ -41,7 +41,7 @@
     --text-secondary: #6b7280; /* secondary/muted text */
     --text-link: #a48a5e;      /* links — tan accent, now the "pop" color */
     --text-link-hover: #8c7248;
-    --accent-emphasis: #d4c7ac;/* buttons, active states, badges — the tan itself */
+    --accent-emphasis: #e8ddc7;/* buttons, active states, badges — the tan itself */
     --success: #6b8c5a;        /* optional accent, e.g. "open to work" dot */
     --radius: 6px;             /* standard corner radius */
     --max-width: 1400px
@@ -924,7 +924,6 @@
 
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
-      e.preventDefault();
       const target = tab.getAttribute('data-target');
 
       tabs.forEach(t => t.classList.remove('active'));
