@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><link rel="icon" type="image/png" href="assets/icon.png"></head>
+<head>
+  <link rel="icon" type="image/png" href="assets/icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jesse Kim's Homepage</title>
@@ -27,7 +32,7 @@
      easiest way to customize your color scheme later.
      ============================================================ */
   :root {
-    --bg-canvas: #ffffff;      /* main page background — near-white, warm */
+    --bg-canvas: #f0ead8;      /* main page background — near-white, warm */
     --bg-inset: #ffffff;       /* card / panel background — white, sits above canvas */
     --bg-subtle: #f0ebe0;      /* hover states, subtle fills — faint tan tint */
     --border-default: #e2dbcb; /* standard borders/dividers — soft tan */
@@ -50,8 +55,7 @@
     margin: 0;
     background: var(--bg-canvas);
     color: var(--text-primary);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica,
-                 Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    font-family: "Roboto Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
 
