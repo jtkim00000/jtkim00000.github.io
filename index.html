@@ -27,18 +27,18 @@
      easiest way to customize your color scheme later.
      ============================================================ */
   :root {
-    --bg-canvas: #0d1117;      /* main page background */
-    --bg-inset: #161b22;       /* card / panel background, slightly lighter */
-    --bg-subtle: #21262d;      /* hover states, subtle fills */
-    --border-default: #30363d; /* standard borders/dividers */
-    --border-muted: #21262d;   /* faint borders */
-    --text-primary: #e6edf3;   /* main body text */
-    --text-secondary: #8b949e; /* secondary/muted text */
-    --text-link: #58a6ff;      /* links, accent color (GitHub blue) */
-    --text-link-hover: #79c0ff;
-    --accent-emphasis: #1f6feb;/* buttons, active states */
-    --success: #3fb950;        /* optional accent, e.g. "open to work" dot */
-    --radius: 6px;             /* GitHub's standard corner radius */
+    --bg-canvas: #faf8f4;      /* main page background — near-white, warm */
+    --bg-inset: #ffffff;       /* card / panel background — white, sits above canvas */
+    --bg-subtle: #f0ebe0;      /* hover states, subtle fills — faint tan tint */
+    --border-default: #e2dbcb; /* standard borders/dividers — soft tan */
+    --border-muted: #ece7db;   /* faint borders */
+    --text-primary: #343a44;   /* main body text — matches icon screen color */
+    --text-secondary: #6b7280; /* secondary/muted text */
+    --text-link: #a48a5e;      /* links — tan accent, now the "pop" color */
+    --text-link-hover: #8c7248;
+    --accent-emphasis: #d4c7ac;/* buttons, active states, badges — the tan itself */
+    --success: #6b8c5a;        /* optional accent, e.g. "open to work" dot */
+    --radius: 6px;             /* standard corner radius */
     --max-width: 900px;
   }
 
@@ -101,7 +101,7 @@
 
   .nav-tab.active {
     color: var(--text-primary);
-    border-bottom-color: #f78166; /* GitHub's active-tab underline color */
+    border-bottom-color: #a48a5e; /* active-tab underline — tan accent */
   }
 
   /* ---------- Page sections ---------- */
@@ -231,7 +231,7 @@
     left: 50%;
     transform: translateX(-50%);
   }
-  .card:hover { border-color: #8b949e; }
+  .card:hover { border-color: #a48a5e; }
 
   /* Grid Layout for the 3 Images */
   .card-images {
