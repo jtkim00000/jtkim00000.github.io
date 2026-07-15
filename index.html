@@ -237,10 +237,11 @@
   /* ---------- Image Carousel ---------- */
   .carousel {
     position: relative;
-    width: 100%;
-    aspect-ratio: 16 / 9; /* more landscape */
+    width: calc(100% + 40px); /* bleed out through the card's left/right padding */
+    margin: -20px -20px 0; /* bleed out through the card's top padding too */
+    aspect-ratio: 2 / 1; /* more horizontal */
     overflow: hidden;
-    border-radius: var(--radius);
+    border-radius: var(--radius) var(--radius) 0 0; /* keep top corners rounded, flat where it meets the text below */
     background: #000;
   }
 
@@ -257,7 +258,6 @@
     width: 70%; /* every image renders at the same size as the main image */
     object-fit: contain; /* letterbox instead of crop */
     background: #000; /* fills empty space around a non-matching image */
-    border: 2px solid var(--border-default); /* clear border */
     box-sizing: border-box;
   }
 
@@ -266,7 +266,6 @@
     left: 15%;
     z-index: 2;
     opacity: 1;
-    border-radius: var(--radius);
   }
 
   /* side peeks: same full size as the current image, just shifted so
