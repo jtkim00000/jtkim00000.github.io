@@ -215,7 +215,7 @@
   /* ---------- Updated Card Layout ---------- */
   .card-list {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 cards per row on desktop */
+    grid-template-columns: repeat(2, 1fr); /* 2 cards per row on desktop */
     gap: 24px;
     align-items: start;
   }
@@ -236,64 +236,80 @@
 
   /* ---------- Image Carousel ---------- */
   .carousel {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    position: relative;
     width: 100%;
+    aspect-ratio: 7 / 5;
+    overflow: hidden;
+    border-radius: var(--radius);
+    background: #000;
   }
 
   .carousel-track {
     position: relative;
-    flex: 1;
-    aspect-ratio: 7 / 5;
-    max-width: 100%;
-    overflow: hidden;
-    border-radius: var(--radius);
-    background: var(--accent-emphasis);
+    width: 100%;
+    height: 100%;
   }
 
   .carousel-img {
     position: absolute;
     top: 0;
     height: 100%;
-    width: 100%;
     object-fit: contain; /* letterbox instead of crop */
-    background: var(--accent-emphasis); /* fills empty space around a non-matching image */
+    background: #000; /* fills empty space around a non-matching image */
     border-radius: var(--radius);
     border: 2px solid var(--border-default); /* clear border */
     box-sizing: border-box;
   }
 
+  /* main image sized down so side peeks have room to show,
+     with the main image + two ~15% peeks spanning the full width */
   .carousel-img.current {
-    left: 0;
+    left: 15%;
+    width: 70%;
     z-index: 2;
     opacity: 1;
   }
 
-  /* faded, barely-shown peeks on either side */
+  /* faded, barely-shown peeks on either side, sized to fill the
+     remaining ~30% of the carousel's width between them */
   .carousel-img.prev {
-    left: -14%;
+    left: 0;
+    width: 15%;
     z-index: 1;
     opacity: 0.35;
   }
   .carousel-img.next {
-    left: 14%;
+    left: 85%;
+    width: 15%;
     z-index: 1;
     opacity: 0.35;
   }
 
   .carousel-arrow {
-    flex-shrink: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 3;
     background: none;
     border: none;
-    color: var(--text-secondary);
-    font-size: 22px;
+    color: var(--text-primary);
+    opacity: 0.7;
+    font-size: 44px;
     line-height: 1;
     cursor: pointer;
-    padding: 4px 6px;
+    padding: 4px 10px;
     font-family: inherit;
   }
-  .carousel-arrow:hover { color: var(--text-primary); }
+  .carousel-arrow.left { left: 4px; }
+  .carousel-arrow.right { right: 4px; }
+  .carousel-arrow:hover { opacity: 1; }
+
+  .carousel-counter {
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-top: 6px;
+  }
 
   .card-body { flex: 1; min-width: 0; }
 
@@ -406,9 +422,6 @@
     text-align: center;
   }
 
-  @media (max-width: 900px) {
-    .card-list { grid-template-columns: repeat(2, 1fr); }
-  }
   @media (max-width: 640px) {
     .card-list { grid-template-columns: 1fr; }
   }
@@ -598,6 +611,7 @@
         </div>
         <button class="carousel-arrow right">&rsaquo;</button>
       </div>
+      <p class="carousel-counter"></p>
 
       <div class="card-body">
         <div class="card-with-year">
@@ -634,6 +648,7 @@
         </div>
         <button class="carousel-arrow right">&rsaquo;</button>
       </div>
+      <p class="carousel-counter"></p>
 
       <div class="card-body">
         <div class="card-with-year">
@@ -670,6 +685,7 @@
         </div>
         <button class="carousel-arrow right">&rsaquo;</button>
       </div>
+      <p class="carousel-counter"></p>
 
       <div class="card-body">
         <div class="card-with-year">
@@ -702,6 +718,7 @@
         </div>
         <button class="carousel-arrow right">&rsaquo;</button>
       </div>
+      <p class="carousel-counter"></p>
 
       <div class="card-body">
         <div class="card-with-year">
@@ -733,6 +750,7 @@
         </div>
         <button class="carousel-arrow right">&rsaquo;</button>
       </div>
+      <p class="carousel-counter"></p>
 
       <div class="card-body">
         <div class="card-with-year">
@@ -766,6 +784,7 @@
         </div>
         <button class="carousel-arrow right">&rsaquo;</button>
       </div>
+      <p class="carousel-counter"></p>
 
       <div class="card-body">
         <div class="card-with-year">
@@ -1031,6 +1050,7 @@
     const nextImg = carousel.querySelector('.carousel-img.next');
     const leftArrow = carousel.querySelector('.carousel-arrow.left');
     const rightArrow = carousel.querySelector('.carousel-arrow.right');
+    const counter = card.querySelector('.carousel-counter');
 
     let index = 0;
 
@@ -1039,11 +1059,14 @@
       if (n === 0) {
         // no images yet for this project — hide the whole carousel
         carousel.style.display = 'none';
+        if (counter) counter.style.display = 'none';
         return;
       }
       currentImg.src = images[index];
       prevImg.src = images[(index - 1 + n) % n];
       nextImg.src = images[(index + 1) % n];
+
+      if (counter) counter.textContent = `( ${index + 1} / ${n} )`;
 
       // hide the arrows/peeks if there's only one image, since
       // there's nothing to loop through
