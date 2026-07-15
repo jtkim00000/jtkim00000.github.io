@@ -214,53 +214,86 @@
 
   /* ---------- Updated Card Layout ---------- */
   .card-list {
-    display: flex;
-    flex-direction: column;
-    gap: 32px; /* Increased gap between modules */
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 cards per row on desktop */
+    gap: 24px;
+    align-items: start;
   }
 
   .card {
     display: flex;
-    flex-direction: column; /* Stacks images above text */
-    gap: 20px;
+    flex-direction: column; /* Stacks image above text */
+    gap: 16px;
     border: 1px solid var(--border-default);
     background: var(--bg-inset);
     border-radius: var(--radius);
-    padding: 24px;
+    padding: 20px;
     transition: border-color 0.15s ease;
-    
-    /* Sizing to exact viewport targets */
-    width: 70vw;             /* 70% screen width */
-    min-height: 60vh;        /* 60% screen height */
+    width: 100%;
     box-sizing: border-box;
-
-    margin-bottom: 28px;
-
-    /* Centers the card on screen while breaking past the 900px main container limit */
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
   }
   .card:hover { border-color: var(--text-link); }
 
-  /* Grid Layout for the 3 Images */
-  .card-images {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 equal side-by-side columns */
-    gap: 12px;
+  /* ---------- Image Carousel ---------- */
+  .carousel {
+    display: flex;
+    align-items: center;
+    gap: 8px;
     width: 100%;
   }
 
-  /* Force 7:5 Landscape Ratio on Images */
-  .card-images img {
-    width: 100%;
-    aspect-ratio: 7 / 5;   /* Enforces the 7:5 landscape aspect ratio */
-    object-fit: cover;     /* Crops neatly without stretching */
+  .carousel-track {
+    position: relative;
+    flex: 1;
+    aspect-ratio: 7 / 5;
+    max-width: 100%;
+    overflow: hidden;
     border-radius: var(--radius);
-    border: 1px solid var(--border-default);
-    background: var(--bg-subtle);
+    background: var(--accent-emphasis);
   }
+
+  .carousel-img {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: contain; /* letterbox instead of crop */
+    background: var(--accent-emphasis); /* fills empty space around a non-matching image */
+    border-radius: var(--radius);
+    border: 2px solid var(--border-default); /* clear border */
+    box-sizing: border-box;
+  }
+
+  .carousel-img.current {
+    left: 0;
+    z-index: 2;
+    opacity: 1;
+  }
+
+  /* faded, barely-shown peeks on either side */
+  .carousel-img.prev {
+    left: -14%;
+    z-index: 1;
+    opacity: 0.35;
+  }
+  .carousel-img.next {
+    left: 14%;
+    z-index: 1;
+    opacity: 0.35;
+  }
+
+  .carousel-arrow {
+    flex-shrink: 0;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 4px 6px;
+    font-family: inherit;
+  }
+  .carousel-arrow:hover { color: var(--text-primary); }
 
   .card-body { flex: 1; min-width: 0; }
 
@@ -371,6 +404,13 @@
     color: var(--text-secondary);
     font-size: 13px;
     text-align: center;
+  }
+
+  @media (max-width: 900px) {
+    .card-list { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .card-list { grid-template-columns: 1fr; }
   }
 
   /* ---------- Responsive: stack photo above text on small screens ---------- */
@@ -546,12 +586,17 @@
        ============================================================ -->
   <section id="projects" class="page-section">
     <h2 class="section-title">Projects</h2>
+    <div class="card-list">
 
-    <div class="card">
-      <div class="card-images">
-        <!-- <img src="assets/riscv-cpu-images/image.png" alt="Pipelined Datapath">
-        <img src="assets/riscv-cpu-images/riscv-hazard-verification.png" alt="Verification Image">
-        <img src="assets/riscv-cpu-images/custom-riscv-single-cycle-datapath.png" alt="Single-Cycle Datapath"> -->
+    <div class="card" data-images='[]'>
+      <div class="carousel">
+        <button class="carousel-arrow left">&lsaquo;</button>
+        <div class="carousel-track">
+          <img class="carousel-img prev" alt="">
+          <img class="carousel-img current" alt="">
+          <img class="carousel-img next" alt="">
+        </div>
+        <button class="carousel-arrow right">&rsaquo;</button>
       </div>
 
       <div class="card-body">
@@ -579,11 +624,15 @@
       </div>
     </div> 
 
-    <div class="card">
-      <div class="card-images">
-        <img src="assets/riscv-cpu-images/image.png" alt="Pipelined Datapath">
-        <img src="assets/riscv-cpu-images/riscv-hazard-verification.png" alt="Verification Image">
-        <img src="assets/riscv-cpu-images/custom-riscv-single-cycle-datapath.png" alt="Single-Cycle Datapath">
+    <div class="card" data-images='["assets/riscv-cpu-images/image.png","assets/riscv-cpu-images/riscv-hazard-verification.png","assets/riscv-cpu-images/custom-riscv-single-cycle-datapath.png"]'>
+      <div class="carousel">
+        <button class="carousel-arrow left">&lsaquo;</button>
+        <div class="carousel-track">
+          <img class="carousel-img prev" alt="">
+          <img class="carousel-img current" alt="">
+          <img class="carousel-img next" alt="">
+        </div>
+        <button class="carousel-arrow right">&rsaquo;</button>
       </div>
 
       <div class="card-body">
@@ -611,11 +660,15 @@
     
     
     
-    <div class="card">
-      <div class="card-images">
-        <img src="assets/noise-detector-images/noise-detector-circuit.png" alt="Circuit Diagram">
-        <img src="assets/noise-detector-images/noise_detector.png" alt="PCB Image">
-        <img src="assets/noise-detector-images/3-stage-comparator.png" alt="3-stage Comparator">
+    <div class="card" data-images='["assets/noise-detector-images/noise-detector-circuit.png","assets/noise-detector-images/noise_detector.png","assets/noise-detector-images/3-stage-comparator.png"]'>
+      <div class="carousel">
+        <button class="carousel-arrow left">&lsaquo;</button>
+        <div class="carousel-track">
+          <img class="carousel-img prev" alt="">
+          <img class="carousel-img current" alt="">
+          <img class="carousel-img next" alt="">
+        </div>
+        <button class="carousel-arrow right">&rsaquo;</button>
       </div>
 
       <div class="card-body">
@@ -639,11 +692,15 @@
           Documentation: <a href="https://github.com/jtkim00000/noise-detector-pcb" target="_blank" rel="noopener">Github →</a>
         </div>
       </div>
-    </div> <div class="card">
-      <div class="card-images">
-        <img src="assets/lc3-cpu-images/lc3-datapath.png" alt="CPU Datapath">
-        <img src="assets/lc3-cpu-images/lc3-fsm.png" alt="Control Unit FSM">
-        <img src="assets/lc3-cpu-images/lc3-microsequencer.png" alt="Microsequencer for Control Unit">
+    </div> <div class="card" data-images='["assets/lc3-cpu-images/lc3-datapath.png","assets/lc3-cpu-images/lc3-fsm.png","assets/lc3-cpu-images/lc3-microsequencer.png"]'>
+      <div class="carousel">
+        <button class="carousel-arrow left">&lsaquo;</button>
+        <div class="carousel-track">
+          <img class="carousel-img prev" alt="">
+          <img class="carousel-img current" alt="">
+          <img class="carousel-img next" alt="">
+        </div>
+        <button class="carousel-arrow right">&rsaquo;</button>
       </div>
 
       <div class="card-body">
@@ -666,11 +723,15 @@
           Documentation: <a href="https://github.com/jtkim00000/lc3-cpu" target="_blank" rel="noopener">Github →</a>
         </div>
       </div>
-    </div> <div class="card">
-      <div class="card-images">
-        <img src="assets/paticle-behavior-images/image.png" alt="Algorithm Comparison">
-        <img src="assets/paticle-behavior-images/(Helix + ExB Drift).png" alt="ExB Drift">
-        <img src="assets/paticle-behavior-images/v_x distribution.png" alt="Relaxation to Maxwellian VD">
+    </div> <div class="card" data-images='["assets/paticle-behavior-images/image.png","assets/paticle-behavior-images/(Helix + ExB Drift).png","assets/paticle-behavior-images/v_x distribution.png"]'>
+      <div class="carousel">
+        <button class="carousel-arrow left">&lsaquo;</button>
+        <div class="carousel-track">
+          <img class="carousel-img prev" alt="">
+          <img class="carousel-img current" alt="">
+          <img class="carousel-img next" alt="">
+        </div>
+        <button class="carousel-arrow right">&rsaquo;</button>
       </div>
 
       <div class="card-body">
@@ -695,11 +756,15 @@
           Documentation: <a href="https://github.com/jtkim00000/particle-simulation-study" target="_blank" rel="noopener">Github (Source Code) →</a>
         </div>
       </div>
-    </div> <div class="card">
-      <div class="card-images">
-        <img src="assets/poisson-images/Screenshot 2026-07-02 051334.png" alt="Electric Potential">
-        <img src="assets/poisson-images/Screenshot 2026-07-02 051534.png" alt="Thomas Algorithm">
-        <img src="assets/poisson-images/Screenshot 2026-07-02 051416.png" alt="SSOR Analysis">
+    </div> <div class="card" data-images='["assets/poisson-images/Screenshot 2026-07-02 051334.png","assets/poisson-images/Screenshot 2026-07-02 051534.png","assets/poisson-images/Screenshot 2026-07-02 051416.png"]'>
+      <div class="carousel">
+        <button class="carousel-arrow left">&lsaquo;</button>
+        <div class="carousel-track">
+          <img class="carousel-img prev" alt="">
+          <img class="carousel-img current" alt="">
+          <img class="carousel-img next" alt="">
+        </div>
+        <button class="carousel-arrow right">&rsaquo;</button>
       </div>
 
       <div class="card-body">
@@ -724,7 +789,7 @@
           <a href="https://drive.google.com/file/d/1S8EOBbCy3Tc2xnwTzEgbgfJD6Fp-Mf5J/view?usp=sharing" target="_blank" rel="noopener">Research Poster →</a>
         </div>
       </div>
-    </div> </section>
+    </div> </div> </section>
 
   <!-- ============================================================
        EDUCATION SECTION
@@ -940,6 +1005,70 @@
     const hash = window.location.hash.replace('#', '');
     const matchingTab = document.querySelector(`.nav-tab[data-target="${hash}"]`);
     if (matchingTab) matchingTab.click();
+  });
+
+  // ============================================================
+  // PROJECT CARD IMAGE CAROUSELS
+  // Each .card has a data-images attribute holding a JSON array
+  // of image paths. To change a project's images, just edit that
+  // array in the HTML — no need to touch this script.
+  // Arrows loop: clicking past the last image wraps to the first,
+  // and vice versa.
+  // ============================================================
+  document.querySelectorAll('.card').forEach(card => {
+    let images = [];
+    try {
+      images = JSON.parse(card.getAttribute('data-images') || '[]');
+    } catch (e) {
+      images = [];
+    }
+
+    const carousel = card.querySelector('.carousel');
+    if (!carousel) return;
+
+    const prevImg = carousel.querySelector('.carousel-img.prev');
+    const currentImg = carousel.querySelector('.carousel-img.current');
+    const nextImg = carousel.querySelector('.carousel-img.next');
+    const leftArrow = carousel.querySelector('.carousel-arrow.left');
+    const rightArrow = carousel.querySelector('.carousel-arrow.right');
+
+    let index = 0;
+
+    function render() {
+      const n = images.length;
+      if (n === 0) {
+        // no images yet for this project — hide the whole carousel
+        carousel.style.display = 'none';
+        return;
+      }
+      currentImg.src = images[index];
+      prevImg.src = images[(index - 1 + n) % n];
+      nextImg.src = images[(index + 1) % n];
+
+      // hide the arrows/peeks if there's only one image, since
+      // there's nothing to loop through
+      const showNav = n > 1;
+      leftArrow.style.visibility = showNav ? 'visible' : 'hidden';
+      rightArrow.style.visibility = showNav ? 'visible' : 'hidden';
+      prevImg.style.display = showNav ? 'block' : 'none';
+      nextImg.style.display = showNav ? 'block' : 'none';
+    }
+
+    leftArrow.addEventListener('click', () => {
+      const n = images.length;
+      if (n === 0) return;
+      index = (index - 1 + n) % n;
+      render();
+    });
+
+    rightArrow.addEventListener('click', () => {
+      const n = images.length;
+      if (n === 0) return;
+      index = (index + 1) % n;
+      render();
+    });
+
+    render();
   });
 </script>
 
