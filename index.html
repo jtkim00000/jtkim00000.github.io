@@ -32,16 +32,16 @@
      easiest way to customize your color scheme later.
      ============================================================ */
   :root {
-    --bg-canvas: #f1ebdb;      /* main page background — near-white, warm */
-    --bg-inset: #f8f4eb;       /* card / panel background — white, sits above canvas */
-    --bg-subtle: #ddcebf;      /* hover states, subtle fills — faint tan tint */
-    --border-default: #bda499; /* standard borders/dividers — soft tan */
-    --border-muted: #ddcebf;   /* faint borders */
-    --text-primary: #171819;   /* main body text — matches icon screen color */
-    --text-secondary: #594d4d; /* secondary/muted text */
-    --text-link: #2c3b39;      /* links — tan accent, now the "pop" color */
-    --text-link-hover: #171819;
-    --accent-emphasis: #e8dccf;/* buttons, active states, badges — the tan itself */
+    --bg-canvas: #353c4c;      /* main page background — near-white, warm */
+    --bg-inset: #1a1c20;       /* card / panel background — white, sits above canvas */
+    --bg-subtle: #0b244e;      /* hover states, subtle fills — faint tan tint */
+    --border-default: #0f1115; /* standard borders/dividers — soft tan */
+    --border-muted: #0f1115;   /* faint borders */
+    --text-primary: #e2e2e9;   /* main body text — matches icon screen color */
+    --text-secondary: #b0c6fb; /* secondary/muted text */
+    --text-link: #5c76ae;      /* links — tan accent, now the "pop" color */
+    --text-link-hover: #5693ef;
+    --accent-emphasis: #19202f;/* buttons, active states, badges — the tan itself */
     --success: #3fbd00;        /* optional accent, e.g. "open to work" dot */
     --radius: 6px;             /* standard corner radius */
     --max-width: 1400px
@@ -112,7 +112,7 @@
 
   .nav-tab.active {
     color: var(--text-primary);
-    border-bottom-color: #594d4d; /* active-tab underline — tan accent */
+    border-bottom-color: var(--text-link); /* active-tab underline — tan accent */
   }
 
   /* ---------- Page sections ---------- */
@@ -242,7 +242,7 @@
     left: 50%;
     transform: translateX(-50%);
   }
-  .card:hover { border-color: #594d4d; }
+  .card:hover { border-color: var(--text-link); }
 
   /* Grid Layout for the 3 Images */
   .card-images {
