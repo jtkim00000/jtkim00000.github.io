@@ -228,7 +228,7 @@
     background: var(--bg-inset);
     border-radius: var(--radius);
     padding: 20px;
-    transition: border-color 0.15s ease;
+    transition: border-color 0.5s ease;
     width: 100%;
     box-sizing: border-box;
   }
@@ -255,7 +255,7 @@
     position: absolute;
     top: 0;
     height: 100%;
-    width: 70%; /* every image renders at the same size as the main image */
+    width: 100%; /* every image renders at the same size as the main image */
     object-fit: contain; /* letterbox instead of crop */
     background: #000; /* fills empty space around a non-matching image */
     box-sizing: border-box;
@@ -263,26 +263,10 @@
 
   /* main image, centered with 15% margin on each side */
   .carousel-img.current {
-    left: 15%;
+    left: 0%;
     z-index: 2;
     opacity: 1;
-    border-left: 1px solid var(--border-default);
-    border-right: 1px solid var(--border-default);
     box-sizing: border-box;
-  }
-
-  /* side peeks: same full size as the current image, just shifted so
-     only a sliver peeks in from the edge — the carousel's overflow:
-     hidden clips the rest, so it reads as "cropped", not shrunk */
-  .carousel-img.prev {
-    left: -55%;
-    z-index: 1;
-    opacity: 0.35;
-  }
-  .carousel-img.next {
-    left: 85%;
-    z-index: 1;
-    opacity: 0.35;
   }
 
   .carousel-arrow {
