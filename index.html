@@ -160,7 +160,7 @@
     height: 180px;
     border-radius: 50%;         /* circle, GitHub-avatar style */
     object-fit: cover;
-    border: 1px solid var(--border-default);
+    border: 3px solid var(--border-default);
     flex-shrink: 0;
   }
 
@@ -266,6 +266,9 @@
     left: 15%;
     z-index: 2;
     opacity: 1;
+    border-left: 1px solid var(--border-default);
+    border-right: 1px solid var(--border-default);
+    box-sizing: border-box;
   }
 
   /* side peeks: same full size as the current image, just shifted so
