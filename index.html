@@ -610,6 +610,43 @@
 
     <div class="card-list">
 
+      <div class="card" data-images='[
+      "assets/gemm-series-images/Figure_1.png",
+    ]'>
+      <div class="carousel">
+        <button class="carousel-arrow left">&lsaquo;</button>
+        <div class="carousel-track">
+          <img class="carousel-img prev" alt="">
+          <img class="carousel-img current" alt="">
+          <img class="carousel-img next" alt="">
+        </div>
+        <button class="carousel-arrow right">&rsaquo;</button>
+        <p class="carousel-counter"></p>
+      </div>
+
+      <div class="card-body">
+        <div class="card-with-year">
+          <p class="card-title">GEMM Kernel Optimization Series in CUDA</p>
+          <span class="card-year"></span>
+        </div>
+
+        <p class="card-desc">
+          Progressively optimized matrix multiplication kernel in CUDA. Implemented tiling, thread granularity coarsening, memory coalescing/corner tuning, bank conflict avoidance, etc. 
+          Achieved a peak throughput of 5.81 TFLOPS, a 5.95x speedup from a naive kernel, and 61.6% of cuBLAS throughput
+        </p>
+
+        <div class="card-tags">
+          <span class="tag">CUDA</span>
+          <span class="tag">C++</span>
+          <span class="tag">Kernel Optimization</span>
+        </div>
+
+        <div class="card-links">
+          Documentation: <a href="https://github.com/jtkim00000/gemm-series" target="_blank" rel="noopener">Github →</a>
+        </div>
+      </div>
+    </div> 
+
     <div class="card" data-images='[
       "assets/fcuda-inference-accelerator-images/forward_prop_throughput_comparison1.png",
       "assets/fcuda-inference-accelerator-images/gpu_profiling_comparison.png",
